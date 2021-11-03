@@ -12,3 +12,4 @@ lerna-debug.log
 # others
 packages/*/lib
 docs/
+.DS_Store
