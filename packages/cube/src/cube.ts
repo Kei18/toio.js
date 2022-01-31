@@ -120,6 +120,12 @@ export class Cube {
     return this
   }
 
+  public once<E extends keyof Event>(event: E, listener: Event[E]): this {
+    const typedEmitter = this.eventEmitter as TypedEmitter<Event>
+    typedEmitter.once(event, listener)
+    return this
+  }
+
   //
   // ID Detection
   //
@@ -333,7 +339,7 @@ export class Cube {
           new IdCharacteristic(characteristic, this.eventEmitter)
           break
         case MotorCharacteristic.UUID:
-          this.motorCharacteristic = new MotorCharacteristic(characteristic)
+          this.motorCharacteristic = new MotorCharacteristic(characteristic, this.eventEmitter)
           break
         case LightCharacteristic.UUID:
           this.lightCharacteristic = new LightCharacteristic(characteristic)
